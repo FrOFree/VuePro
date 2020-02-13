@@ -43,8 +43,9 @@ module.exports = {
     "no-multiple-empty-lines": [1, {"max": 3}], //空行最多不能超过两行
     "quotes": [1, "single", "avoid-escape"], //引号风格
     "comma-spacing": [1, { "before": false, "after": true }],//逗号前后的空格限制
-    "semi": [2, "always"], //强制语句分号结尾
-    "indent": ["error", 2],
-    "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }]//vue将标签渲染为原生html标签时，由于这些标
+    "semi": 0, //强制语句分号结尾
+    "indent": ["off", 2],
+    "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }],//vue将标签渲染为原生html标签时，由于这些标
+    "vue/html-self-closing":"off"
   }
 }

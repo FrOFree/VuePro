@@ -18,22 +18,23 @@ import Main from '@/components/main';
 
 export default [
   {
-    path: '/ivew',
-    name: 'ivew',
-    meta: {
-      icon: 'ios-stats',
-      title: 'ivew'
-    },
-    component: () => import('@/view/config/list.vue')
-  },
-  {
     path: '/demo',
     name: 'demo',
     meta: {
-      icon: 'ios-stats',
-      title: 'demo'
+      title: '',
+      hideInMenu: true
     },
     component: () => import('@/view/config/demo/list.vue')
+  },
+  {
+    path: '/app',
+    name: 'app',
+    meta: {
+      title: '',
+      requireAuth: true,
+      hideInMenu: true
+    },
+    component: () => import('@/App.vue')
   },
   {
     path: '/login',
@@ -42,7 +43,8 @@ export default [
       title: 'Login - 登录',
       hideInMenu: true
     },
-    component: () => import('@/view/login/login.vue')
+    //component: () => import('@/view/login/login.vue')
+    component: resolve => require(['@/view/login/login.vue'],resolve)
   },
   {
     path: '/',
@@ -50,7 +52,9 @@ export default [
     redirect: '/home',
     component: Main,
     meta: {
-      hideInMenu: true
+      title: '欢迎',
+      requireAuth: true,
+      hideInMenu: false
     },
     children: [
       {
@@ -59,7 +63,8 @@ export default [
         meta: {
           title: '首页',
           icon: 'ios-stats',
-          hideInMenu: true
+          requireAuth: true,
+          hideInMenu: false
         },
         component: () => import('@/view/single-page/home/home')
       }
@@ -70,18 +75,31 @@ export default [
     name: 'product',
     component: Main,
     meta: {
-      title: '菜单一',
-      icon: 'ios-stats'
+      title: '客户管理',
+      icon: 'ios-stats',
+      requireAuth: true
     },
     children: [
       {
-        path: 'manage',
+        path: '/manage',
         name: 'manage',
         meta: {
-          title: '菜单1',
-          icon: 'ios-stats'
+          title: "客户信息",
+          icon: 'ios-stats',
+          requireAuth: true,
+          hideInMenu: false
         },
         component: () => import('@/view/config/product/manage-list/list.vue')
+      },
+      {
+        path: '/cif',
+        name: '客户维护',
+        meta: {
+          title: '客户维护',
+          icon: 'ios-stats',
+          requireAuth: true
+        },
+        component: () => import('@/view/config/demo/list.vue')
       }
     ]
   },

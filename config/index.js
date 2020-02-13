@@ -10,7 +10,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'https://api.apiopen.top/singlePoetry',
+        // target: 'https://api.apiopen.top/singlePoetry',
+        target: '134.175.151.174:9001',
         changeOrigin: true,
         secure: false,
         pathRewrite:{

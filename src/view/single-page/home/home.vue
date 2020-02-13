@@ -1,6 +1,6 @@
 <template>
-   <div class="">
-     123
+   <div class="main">
+      <Button @click="test" type="primary">测试后端</Button>
    </div>
 </template>
 
@@ -10,9 +10,23 @@ export default {
   data () {
     return {};
   },
-  components: {}
+  mounted(){
+  },
+  components: {},
+  method:{
+    test(){
+
+    }
+  }
 };
 </script>
 
 <style scoped lang="css">
+  .main{
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../assets/images/login-bg.jpg');
+    background-size: cover;
+    background-position: center;
+  }
 </style>

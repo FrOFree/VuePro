@@ -4,6 +4,9 @@ const tel = /^1[345789]\d{9}$/;
 // const fax = /^(\d{3,4}-)?\d{7,8}$/;
 // const name = /^[A-Za-z0-9\u4e00-\u9fa5]{2,10}$/;
 const name = /^[\w\u4e00-\u9fa5]{2,15}$/;
+const age = /^[0-9]{1,3}?$/;//年龄
+const date = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+
 const pwd = /^[a-zA-Z0-9]{4,16}$/;
 const idNo = /^[a-zA-Z0-9]{1,32}$/;// 证件编号
 const roleId = /^[a-zA-Z0-9]{1,8}$/; // 角色编号
@@ -24,6 +27,9 @@ const ordinalNum = /^\d+(\.{0,1}\d+){0,1}$/; // 排列序号 非负数
 const organization = /^[\u4e00-\u9fa5_a-zA-Z0-9]+$/; // 机构  只能是中文,数字,英文
 const number = /^.*[^\d].*$/; // 编号 不能是纯数字
 const per = /-?\d+[.]*\d*%?$/;
+
+const loginFlag = false;//是否登陆状态
+const loginedFlag = false;//是否登陆过
 let FormValidate = (function () {
   function FormValidate () {}
   // From表单验证规则  可用于公用的校验部分
@@ -308,6 +314,137 @@ let FormValidate = (function () {
         if (!per.test(value)) {
           callback(new Error('预警值只能是数字和百分比数字'));
         } else {
+          callback();
+        }
+      }
+    };
+  };
+  FormValidate.editData = function () {
+    return {
+      // 姓名的验证规则
+      Email: function (rule, value, callback) {
+        if (!value) {
+          return callback(new Error('邮箱不能为空'));
+        }
+        if (!email.test(value)) {
+          callback(new Error('请输入正确的邮箱!'));
+        } else {
+          callback();
+        }
+      },
+      // 身份证的验证规则
+      ID: function (rule, value, callback) {
+        if (!value) {
+          return callback(new Error('身份证不能为空'));
+        }
+        if (!regId.test(value)) {
+          callback(new Error('请输入正确的二代身份证号码'));
+        } else {
+          callback();
+        }
+      },
+      // 电话号码的验证
+      Tel: (rule, value, callback) => {
+        if (value && !tel.test(value)) {
+          return callback(new Error('请正确填写电话号码'));
+        } else {
+          callback();
+        }
+      },
+      // 用户名的验证规则
+      name: function (rule, value, callback) {
+        if (!value) {
+          return callback(new Error('用户名不能为空'));
+        }
+        if (!name.test(value)) {
+          callback(new Error('用户名不合法'));
+        } else {
+          callback();
+        }
+      },
+      age: function(rule , value , callback){
+        if(!value){
+          return callback(new Error('年龄不能为空'));
+        }
+        if (!age.test(value)){
+          callback(new Error('年龄不合法'));
+        }else{
+          callback();
+        }
+      },
+      date: function(rule , value , callback){
+        if(!value){
+          return callback(new Error('日期不能为空'));
+        }
+        if (!date.test(value)){
+          callback(new Error('日期不合法'));
+        }else{
+          callback();
+        }
+      }
+    };
+  };
+
+  FormValidate.addData = function () {
+    return {
+      // 姓名的验证规则
+      Email: function (rule, value, callback) {
+        if (!value) {
+          return callback(new Error('邮箱不能为空'));
+        }
+        if (!email.test(value)) {
+          callback(new Error('请输入正确的邮箱!'));
+        } else {
+          callback();
+        }
+      },
+      // 身份证的验证规则
+      ID: function (rule, value, callback) {
+        if (!value) {
+          return callback(new Error('身份证不能为空'));
+        }
+        if (!regId.test(value)) {
+          callback(new Error('请输入正确的二代身份证号码'));
+        } else {
+          callback();
+        }
+      },
+      // 电话号码的验证
+      Tel: (rule, value, callback) => {
+        if (value && !tel.test(value)) {
+          return callback(new Error('请正确填写电话号码'));
+        } else {
+          callback();
+        }
+      },
+      // 用户名的验证规则
+      name: function (rule, value, callback) {
+        if (!value) {
+          return callback(new Error('用户名不能为空'));
+        }
+        if (!name.test(value)) {
+          callback(new Error('用户名不合法'));
+        } else {
+          callback();
+        }
+      },
+      age: function(rule , value , callback){
+        if(!value){
+          return callback(new Error('年龄不能为空'));
+        }
+        if (!age.test(value)){
+          callback(new Error('年龄不合法'));
+        }else{
+          callback();
+        }
+      },
+      date: function(rule , value , callback){
+        if(!value){
+          return callback(new Error('日期不能为空'));
+        }
+        if (!date.test(value)){
+          callback(new Error('日期不合法'));
+        }else{
           callback();
         }
       }

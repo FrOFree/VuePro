@@ -2,83 +2,98 @@
     <Modal
         :width='400'
         class-name="content"
-        v-model="modalFlag"
+        v-model="modalFlag_add"
         :mask-closable="false"
         :closable="false"
     >
         <div slot="header" style="fontSize:14px;fontWeight:bold">
-            <span>{{this.title}}</span>
+            <span>{{this.title_add}}</span>
         </div>
-        <Form ref="ruleValidate" :model="editData" :label-width="60">
+        <Form ref="ruleValidate" :model="addData" :rules="rules" :label-width="60">
             <FormItem label="姓名" prop="name">
-                <Input v-model="editData.name" placeholder="请选择特征英文名"></Input>
+                <Input v-model="addData.name" placeholder="请选择特征英文名"/>
             </FormItem>
             <FormItem label="年龄" prop="age">
-                <Input v-model="editData.age" placeholder="请选择特征英文名"></Input>
+                <Input v-model="addData.age" placeholder="请选择特征英文名"/>
             </FormItem>
-            <FormItem label="住址" prop="address">
-                <Input v-model="editData.address" placeholder="请选择特征英文名"></Input>
+            <FormItem label="地址" prop="address">
+              <Input v-model="addData.address" placeholder="" type="textarea"/>
+            </FormItem>
+            <FormItem label="日期" prop="date">
+              <Input v-model="addData.date" placeholder="请选择日期" type="date"/>
             </FormItem>
         </Form>
         <div slot="footer">
-            <Button type="error" @click="_cancle">取消</Button>
-            <Button type="primary" @click="_createApply">确定</Button>
+            <Button type="error" @click="_cancle_add">取消</Button>
+            <Button type="primary" @click="_createApply_add">确定</Button>
         </div>
     </Modal>
 </template>
 
 <script>
+import Format from '@/libs/format.js';
 export default {
-  name: 'editor',
+  name: '',
   props: {
-    modal: {
+    modal_add: {
       type: Boolean,
       default: false
     },
-    title: {
+    title_add: {
       type: String,
       default: ''
     },
     popData: {
       type: Object,
       default: () => ({})
+    },
+    popOriData: {
+      type: Object,
+      default: () => ({})
     }
   },
-  inject: ['reload'],
   data () {
     return {
-      modalFlag: false,
-      editData: {
+      modalFlag_add: false,
+      addData: {
         name: '',
         age: '',
-        address: ''
+        address: '',
+        date: ''
+      },
+      rules: {
+        name: [{ required: true, validator: Format.FormValidate.editData().name, trigger: 'change' }],
+        age: [{ required: true, validator: Format.FormValidate.editData().age, trigger: 'change' }],
+        date: [{ required: true, validator: Format.FormValidate.editData().date, trigger: 'change' }]
       }
     };
   },
   mounted () {},
   methods: {
     // @_cancle点击取消按钮
-    _cancle () {
-      this.modalFlag = false;
-      this.$emit('changeModal', false);
-      // this.reload();
+    _cancle_add () {
+      this.$emit('changeModal2', false);
     },
     // @_createApply点击提交按钮
-    _createApply (name) {
-      this.$emit('getAddData', this.editData);
-      this.modalFlag = false;
-      this.$Message.success('新增成功');
-      this.$emit('changeModal', false);
+    _createApply_add () {
+      this.$refs.ruleValidate.validate((vali) => {
+        if(vali){
+          this.$emit('getAddData2', this.addData);
+          this.$Message.success('新增成功');
+          this.$emit('changeModal2', false);
+        }
+      })
     }
   },
   watch: {
-    modal (val) {
-      this.modalFlag = val;
-      this.editData = this.popData;
+    modal_add (val) {
+      this.modalFlag_add = val;
+      //this.addData = this.popData;
+      //this.popOriData = this.popData;
     },
-    modalFlag (val) {
-      this.$emit('changeModal', val);
-      this.editData = this.popData;
+    modalFlag_add (val) {
+      this.$emit('changeModal2', val);
+      this.addData = this.popData;
     }
   }
 };

@@ -17,9 +17,13 @@
 
 <script>
 import LoginForm from '_c/login-form';
+import users from './users.vue';
+
+import '@/index.less';
 // import {loginIn} from '@/api/user';
 // import {getApi} from '@/api/data.js';
 import { mapActions } from 'vuex';
+
 export default {
   components: {
     LoginForm
@@ -34,8 +38,24 @@ export default {
       //   let {msg, code, data} = rst;
       //   if (this.$successFun(code)) {
       //     if (!(data.accessToken === undefined || data.refreshToken === undefined)) {
-      //       sessionStorage.setItem('accessToken', data.accessToken);
-      //       sessionStorage.setItem('refreshToken', data.refreshToken);
+             //sessionStorage.setItem('accessToken', data.accessToken);
+             //sessionStorage.setItem('refreshToken', data.refreshToken);
+             //localStorage.token.setItem('userId',username);
+
+            users.userid = 'lixl';
+            users.pwd = '123456';
+            if( (username == users.userid && users.pwd == password)
+              || true){
+              this.$Format.loginFlag = true;
+              //localStorage.token = true;
+              // console.log(this.$Format.loginFlag+'123');
+              // this.$router.push({name: 'home'});
+              this.$router.push({name: '客户维护'});
+              //this.$router.go(-2);
+            }else{
+              alert('用户名或密码不正确');
+            }
+
       //       this.$router.push({
       //         name: this.$config.homeName
       //       });
