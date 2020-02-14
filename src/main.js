@@ -10,7 +10,6 @@ import iView from 'iview';
 import i18n from '@/locale';
 import config from '@/config';
 import staticData from '@/assets/data/static_data.js'
-import axios from 'axios';
 import './index.less';
 // import './components/transfer/style.css';
 import '@/assets/icons/iconfont.css';
@@ -25,9 +24,7 @@ Vue.prototype.$successFun = successFun;
 Vue.prototype.$getDicList = getDicList;
 Vue.prototype.$getDicLabel = getDicLabel;
 Vue.prototype.$Format = Format;// 全局校验文件挂载在Vue上
-Vue.prototype.$axios = axios;
 
-Vue.use(axios);
 // import gojs from 'gojs';
 // Vue.prototype.go = gojs;
 // 实际打包时应该不引入mock

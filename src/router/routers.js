@@ -84,7 +84,7 @@ export default [
         path: '/manage',
         name: 'manage',
         meta: {
-          title: "客户信息",
+          title: "客户信息(localStorage)",
           icon: 'ios-stats',
           requireAuth: true,
           hideInMenu: false
@@ -95,11 +95,32 @@ export default [
         path: '/cif',
         name: '客户维护',
         meta: {
-          title: '客户维护',
+          title: '客户维护(localStorage)',
           icon: 'ios-stats',
           requireAuth: true
         },
         component: () => import('@/view/config/demo/list.vue')
+      },
+      {
+        path: '/manage_web',
+        name: '客户信息(后端)',
+        meta: {
+          title: "客户信息",
+          icon: 'ios-stats',
+          requireAuth: true,
+          hideInMenu: false
+        },
+        component: () => import('@/view/config/product/manage-list/list_web.vue')
+      },
+      {
+        path: '/cif_web',
+        name: '客户维护(后端)',
+        meta: {
+          title: '客户维护(后端)',
+          icon: 'ios-stats',
+          requireAuth: true
+        },
+        component: () => import('@/view/config/demo/list_web.vue')
       }
     ]
   },

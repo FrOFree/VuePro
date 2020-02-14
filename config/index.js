@@ -11,7 +11,7 @@ module.exports = {
     proxyTable: {
       '/api': {
         // target: 'https://api.apiopen.top/singlePoetry',
-        target: '134.175.151.174:9001',
+        target: 'http://134.175.151.174:9001',
         changeOrigin: true,
         secure: false,
         pathRewrite:{

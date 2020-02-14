@@ -1,6 +1,48 @@
 import axios from '@/libs/api.request';
 import config from '@/config';
 let gateway = config.gateway;
+export const getByName = (params) =>{//测试查询
+  return axios.request({
+    url:'/user/name/'+params,
+    data: {},
+    method: 'get',
+    headers:{
+      'Content-type': 'application/x-www-form-urlencoded'
+    },
+  });
+};
+export const findByPage = (params) =>{//测试查询
+  return axios.request({
+    url:'/user/findByPage',
+    data: params,
+    method: 'post'
+  });
+};
+
+export const updateById = (params => {
+  return axios.request({
+    url:'/user/updateUser',
+    data: params,
+    method: 'put'
+  });
+});
+
+export const deleteById = (params => {
+  return axios.request({
+    url:'/user/'+params,
+    data: {},
+    method: 'delete'
+  });
+});
+
+export const insert = (params => {
+  return axios.request({
+    url:'/user/insert',
+    data: params,
+    method: 'post'
+  });
+});
+
 export const login = (params) => {
   return axios.request({
     url: `${gateway}/authorize/login`,

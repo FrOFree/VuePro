@@ -5,7 +5,7 @@
   "author": "姜文丽 <qc_efe8fb48c3bb48c29bf59e2162b5964b@git.code.tencent.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --open --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "test": "npm run unit",
