@@ -6,6 +6,7 @@
   <div class="login">
     <div class="login-con">
       <Card icon="log-in" title="欢迎登录" :bordered="false">
+      {{localKey}}
         <div class="form-con">
           <login-form @on-success-valid="handleSubmit"></login-form>
           <p class="login-tip">请输入您的用户名和密码</p>
@@ -18,21 +19,22 @@
 <script>
 import LoginForm from '_c/login-form';
 import users from './users.vue';
-
 import '@/index.less';
-// import {loginIn} from '@/api/user';
+import {login} from '@/api/user';
 // import {getApi} from '@/api/data.js';
-import { mapActions } from 'vuex';
+// import { mapActions } from 'vuex';
+import { mapState,mapMutations } from 'vuex';
+
 
 export default {
   components: {
     LoginForm
   },
   methods: {
-    ...mapActions([
-      'handleLogin',
-      'getUserInfo'
-    ]),
+    // ...mapActions([
+    //   'handleLogin',
+    //   'getUserInfo'
+    // ]),
     handleSubmit ({ username, password }) {
       // loginIn({ username, password }).then(rst => {
       //   let {msg, code, data} = rst;
@@ -42,33 +44,32 @@ export default {
              //sessionStorage.setItem('refreshToken', data.refreshToken);
              //localStorage.token.setItem('userId',username);
 
-            users.userid = 'lixl';
-            users.pwd = '123456';
-            if( (username == users.userid && users.pwd == password)
-              || true){
-              this.$Format.loginFlag = true;
-              //localStorage.token = true;
-              // console.log(this.$Format.loginFlag+'123');
-              // this.$router.push({name: 'home'});
-              this.$router.push({name: '客户维护'});
-              //this.$router.go(-2);
-            }else{
-              alert('用户名或密码不正确');
-            }
+            users.userss.userId = username;
+            users.userss.passWord = password;
+            login(users).then(res=>{
+              users.userss.userName = res.data.data.userName;
+              if (users.userss.userName == "" || users.userss.userName == null){
 
-      //       this.$router.push({
-      //         name: this.$config.homeName
-      //       });
-      //     } else {
-      //       this.$router.push({
-      //         name: this.$config.loginName
-      //       });
-      //     }
-      //   } else {
-      //     this.$Message.info(msg);
-      //   }
-      // });
+              }else{
+                this.$Message.success("登录成功，用户："+res.data.data.userName);
+                let x = this.initLocalKey();
+                // console.log(x+',key:'+this.$store.state.localKey);
+                console.log(x+',key:'+this.localKey);
+                // this.setToken();
+              }
+              // this.$Format.loginFlag = true;
+              // console.log(this.$Format.loginFlag);git 
+              // this.$router.push({name: 'home'});
+            }).catch(err=>{
+              this.$Message.error("登录验证失败"+err);
+            });
+
     }
+  },
+  computed:{
+    ...mapState(['localKey']),
+    ...mapMutations(['setToken','initLocalKey']),
+    // localKey:state => state.localKey;
   }
 };
 </script>

@@ -11,7 +11,9 @@ module.exports = {
     proxyTable: {
       '/api': {
         // target: 'https://api.apiopen.top/singlePoetry',
-        target: 'http://134.175.151.174:9001',
+        // target: 'http://134.175.151.174:9001',
+        // target:'http://192.168.1.125:9090',
+        target:'http://169.254.55.58:9090',
         changeOrigin: true,
         secure: false,
         pathRewrite:{
@@ -22,7 +24,7 @@ module.exports = {
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8081, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,

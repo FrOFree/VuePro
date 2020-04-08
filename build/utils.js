@@ -1,15 +1,16 @@
 'use strict';
 const path = require('path');
 const config = require('../config');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');//一个插件，抽离CSS样式，防止将样式打包在JS中引起样式加载错乱
 const packageConfig = require('../package.json');
 
 exports.assetsPath = function (_path) {
+  //如果是生产环境，则assetSubDirectory的值为index.js文件中的buid下的assetSubDirectory的值，否则
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.build.assetsSubDirectory
     : config.dev.assetsSubDirectory;
 
-  return path.posix.join(assetsSubDirectory, _path)
+  return path.posix.join(assetsSubDirectory, _path)//path.join返回绝对路径，path.posix.join返回相对路径
 };
 
 exports.cssLoaders = function (options) {

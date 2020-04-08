@@ -19,6 +19,7 @@ import {successFun} from '@/libs/tools.js';
 import {getDicList, getDicLabel} from '@/libs/util.js';
 import Format from '@/libs/format.js';// 全局校验文件
 
+
 Vue.prototype.Inspector = Inspector;
 Vue.prototype.$successFun = successFun;
 Vue.prototype.$getDicList = getDicList;
@@ -76,3 +77,26 @@ router.beforeEach((to, from, next) => {
     next();
   }
  });
+
+// var reslt;
+// if (window.requestIdleCallback) {
+//    requestIdleCallback(function () {
+//     reslt= Fingerprint2.get(function (components) {
+//         // console.log(components) // an array of components: {key: ..., value: ...}
+//         let values = components.map(function (component) { return component.value });
+//         let murmur = Fingerprint2.x64hash128(values.join(''), 31);
+//         console.log(murmur);//在这里就是打印的浏览器指纹
+//       });
+//   })
+// } else {
+//   setTimeout(function () {
+//    Fingerprint2.get(function (components) {
+//         // console.log(components) // an array of components: {key: ..., value: ...}
+//         let values = components.map(function (component) { return component.value });
+//         let murmur = Fingerprint2.x64hash128(values.join(''), 31);
+//         console.log(murmur);//在这里就是打印的浏览器指纹
+//       });
+//   }, 500);
+// }
+
+

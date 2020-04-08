@@ -21,21 +21,21 @@ const createLintingRule = () => ({
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
-  entry: {
-    app: ["babel-polyfill", "./src/main.js"]
+  entry: {//输入
+    app: ["babel-polyfill", "./src/main.js"] //入口文件
   },
-  output: {
-    path: config.build.assetsRoot,
+  output: {//输出
+    path: config.build.assetsRoot,//打包后文件输出路径，index.js中build配置的assetRoot
     filename: '[name].js',
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
-  resolve: {
-    extensions: ['.js', '.vue', '.json', '.less'],
+  resolve: {//决定要做的事
+    extensions: ['.js', '.vue', '.json', '.less'],//以上后缀文件导入后省略扩展名
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
+      'vue$': 'vue/dist/vue.esm.js',//$符指精确匹配，路径和文件名要详细
+      '@': resolve('src'),//src目录可以简写为@
       '_c': resolve('src/components')
     }
   },
@@ -43,8 +43,8 @@ module.exports = {
     rules: [
       ...(config.dev.useEslint ? [] : []),
       {
-        test: /\.vue$/,
-        loader: 'vue-loader',
+        test: /\.vue$/,//正则表达，指.vue的文件
+        loader: 'vue-loader',//对vue文件使用vue-loader,该loader是vue单文件组件的实现核心，解析.vue文件
         options: vueLoaderConfig
       },
       {

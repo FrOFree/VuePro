@@ -252,7 +252,6 @@ export default {
     },
     reset (user) {
       updateById(user).then (res =>{
-        // console.log(res);
         this.$Message.success('修改成功');
         this.changeModal(false);
       }).catch(err => {

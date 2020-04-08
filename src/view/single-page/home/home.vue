@@ -35,11 +35,10 @@ export default {
   methods:{
     getByName(){
       getByName('lixl').then(res =>{
-        console.log(res.data);
         this.show.content = JSON.stringify(res.data);
       })
       .catch(err =>{
-        console.log(err);
+        this.show.content = '测试失败：'+err
       });
     },
     showIns(){

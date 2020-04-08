@@ -1,13 +1,17 @@
 <script>
 export default {
     userss:{
-        userid: {
+        userId: {
         type: String,
         default: ''
         },
-        pwd:{
+        passWord:{
         type: String,
         default: ''
+        },
+        userName:{
+          type:String,
+          default:''
         }
   }
 

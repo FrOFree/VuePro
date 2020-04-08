@@ -1,7 +1,7 @@
-'use strict';
-require('./check-versions')();
+'use strict'; //严格模式，使JS更合理、安全的运行
+require('./check-versions')(); //node和npm版本检查
 
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'production'; //环境变量为生产模式
 
 const ora = require('ora');
 const rm = require('rimraf');
@@ -11,7 +11,7 @@ const webpack = require('webpack');
 const config = require('../config');
 const webpackConfig = require('./webpack.prod.conf');
 
-const spinner = ora('building for production...');
+const spinner = ora('building for production...'); //实现loading的模块，具体可上npm上查
 spinner.start();
 
 rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
